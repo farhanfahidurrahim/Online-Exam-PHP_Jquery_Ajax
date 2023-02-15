@@ -10,9 +10,32 @@
 		$disid=(int)$_GET['dis'];
 		$dbuser=$usr->disableUser($disid);
 	}
+
+	if (isset($_GET['ena'])) {
+		$enaid=(int)$_GET['ena'];
+		$enauser=$usr->enableUser($enaid);
+	}
+
+	if (isset($_GET['del'])) {
+		$delid=(int)$_GET['del'];
+		$deluser=$usr->deleteUser($delid);
+	}
 ?>
 	<div class="main">
 		<h3>Admin Panel - Manage User</h3>
+		<?php
+			if (isset($dbuser)) {
+				echo $dbuser;
+			}
+				
+			if (isset($enauser)) {
+				echo $enauser;
+			}
+
+			if (isset($deluser)) {
+				echo $deluser;
+			}
+		?>
 		<div class="manageuser">
 			<table class="tblone">
 				<tr>
@@ -31,8 +54,22 @@
 					$i++;
 		?>
 				<tr>
-					<td><?php echo $i ?></td>
-					<td><?php echo $value['name']?></td>
+					<td><?php 
+							if ($value['status'] == '1') {
+								echo "<span class='error'>".$i."</span>";
+							}else{
+								echo $i;
+							}
+					 	?>
+					</td>
+					<td><?php  
+							if ($value['status'] == '1') {
+								echo "<span class='error'>".$value['name']."</span>";
+							}else{
+								echo $value['name'];
+							}
+						?>	
+					</td>
 					<td><?php echo $value['username']?></td>
 					<td><?php echo $value['email']?></td>
 					<td><?php echo $value['phone']?></td>

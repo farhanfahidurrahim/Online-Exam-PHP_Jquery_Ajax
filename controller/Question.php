@@ -65,6 +65,25 @@
 			return $result;
 		}
 
+		public function deleteQuestion($quesno)
+		{
+			$tables=array("tbl_question","tbl_answer");
+
+			foreach ($tables as $table) {
+				$query="DELETE FROM $table WHERE quesNo='$quesno'";
+				$delete_data=$this->db->delete($query);
+			}
+				if ($delete_data) {
+					$msg="<span class='success'>Question Delete Successfully!</span>";
+					return $msg;
+				}else{
+					$msg="<span class='error'>Question Not Delete!</span>";
+					return $msg;
+				}
+		}
+
+		//___End Admin Part
+
 		public function getUserQuestion()
 		{
 			$query="SELECT * FROM tbl_question";

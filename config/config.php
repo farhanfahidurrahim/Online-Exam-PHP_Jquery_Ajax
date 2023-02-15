@@ -2,4 +2,4 @@
 define("DB_HOST", "localhost");
 define("DB_USER", "root");
 define("DB_PASS", "");
-define("DB_NAME", "onlineexam");
+define("DB_NAME", "twlp_onlineexam");

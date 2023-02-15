@@ -29,6 +29,45 @@
 			return $result;
 		}
 
+		public function disableUser($userid)
+		{
+			$query="UPDATE tbl_user SET status='1' WHERE userId= '$userid'";
+			$update_row=$this->db->update($query);
+			if ($update_row) {
+				$msg="<span class='success'>User Disable Successfully!</sapn>";
+				return $msg;
+			}else{
+				$msg="<span class='error'>User Not Disable!</sapn>";
+				return $msg;
+			}
+		}
+
+		public function deleteUser($userid)
+		{
+			$query="DELETE FROM tbl_user WHERE userId='$userid'";
+			$delete_data=$this->db->delete($query);
+			if ($delete_data) {
+				$msg="<span class='success'>User Delete Successfully!</span>";
+				return $msg;
+			}else{
+				$msg="<span class='error'>User Not Delete!</span>";
+				return $msg;
+			}
+		}
+
+		public function enableUser($userid)
+		{
+			$query="UPDATE tbl_user SET status='0' WHERE userId='$userid'";
+			$update_row=$this->db->update($query);
+			if ($update_row) {
+				$msg="<span class='success'>User Enable Successfully!</span>";
+				return $msg;
+			}else{
+				$msg="<span class='error'>User Disable Successfully!</span>";
+				return $msg;
+			}
+		}
+
 		//__Frontend Part : User Registration
 		public function userRegistration($name,$username,$phone,$email,$password)
 		{

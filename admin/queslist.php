@@ -8,12 +8,22 @@
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   	// code...
   }
+
+  if (isset($_GET['del'])) {
+  		$ques_id=(int)$_GET['del'];
+  		$del_ques=$ques->deleteQuestion($ques_id);
+  }
 ?>
 <style>
 	.adminpanel{width: 500px;color: #999;margin: 30px auto 0; padding:50px; border: 1px solid #ddd;}
 </style>
 	<div class="main">
 	<h1>Admin Panel | Question List</h1>
+	<?php
+		if (isset($del_ques)) {
+			 echo $del_ques;
+		}
+	?>
 		<div class="questionlist">
 			<table class="tblone">
 				<tr>
@@ -32,7 +42,7 @@
 					<td><?php echo $i ?></td>
 					<td><?php echo $value['question']?></td>
 					<td>
-						<a onclick="return confirm('Are you sure Remove?')" href="?del=<?php echo $value['id']?>">Remove</a>
+						<a onclick="return confirm('Are you sure Remove?')" href="?del=<?php echo $value['quesNo']?>">Remove</a>
 					</td>
 				</tr>
 				<?php } } ?>		
